@@ -1,0 +1,10 @@
+name: Task
+description: Small, well-scoped work item
+labels: ["task"]
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: What to do
+    validations:
+      required: true

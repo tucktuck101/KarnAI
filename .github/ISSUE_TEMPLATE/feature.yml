@@ -1,0 +1,11 @@
+name: Feature request
+description: Propose a capability
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: value
+    attributes:
+      label: What’s the user value?
+      description: Why this matters; acceptance criteria if known
+    validations:
+      required: true
