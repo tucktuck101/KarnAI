@@ -1,11 +1,78 @@
-name: Feature request
-description: Propose a capability
-labels: ["enhancement"]
+name: "Feature"
+description: "Program-level capability that delivers user value within a PI."
+title: "Feature: <name>"
+labels: ["Type: Feature"]
 body:
   - type: textarea
-    id: value
+    id: description
     attributes:
-      label: What’s the user value?
-      description: Why this matters; acceptance criteria if known
+      label: Description
+      description: What this feature does and why.
     validations:
       required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Use Given/When/Then or bullet points.
+      placeholder: |
+        - Given ..., When ..., Then ...
+        - ...
+    validations:
+      required: true
+  - type: input
+    id: fr_ids
+    attributes:
+      label: Functional Requirement IDs
+      placeholder: "e.g., FR-001, FR-002"
+  - type: dropdown
+    id: nfr_category
+    attributes:
+      label: NFR Category
+      multiple: true
+      options:
+        - Latency
+        - Throughput
+        - Determinism
+        - Reliability
+        - Observability
+        - Security
+        - Portability
+  - type: input
+    id: nfr_target
+    attributes:
+      label: NFR Target(s)
+      placeholder: "e.g., >= 10 sims/min; deterministic replay"
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: textarea
+    id: cr_refs
+    attributes:
+      label: CR / Commander References (if applicable)
+      placeholder: "e.g., CR 117 (Priority), 608 (Resolving Spells)"
+  - type: textarea
+    id: deps
+    attributes:
+      label: Dependencies
+      placeholder: "Link related Epics/Features/ADRs/CCRs"
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done
+      options:
+        - label: Tests added/updated (golden/replay/property)
+        - label: Observability spans/metrics added
+        - label: Docs updated
+        - label: No RNG outside core/rng (determinism respected)

@@ -1,0 +1,35 @@
+name: "Data Operation (Ingest/Backfill/Fixup)"
+description: "Operational data job with hashes, idempotency, and rollback."
+title: "DataOp: <job>"
+labels: ["Type: DataOp"]
+body:
+  - type: textarea
+    id: input
+    attributes:
+      label: Input Source & Hash
+      placeholder: "URL/path + SHA256"
+      validations:
+        required: true
+  - type: input
+    id: transform
+    attributes:
+      label: Transform Version
+      placeholder: "e.g., etl-v0.1.3"
+  - type: textarea
+    id: output
+    attributes:
+      label: Output & Checksum
+      placeholder: "Path + SHA256"
+  - type: textarea
+    id: idempotency
+    attributes:
+      label: Idempotency Plan
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback Plan
+  - type: textarea
+    id: steps
+    attributes:
+      label: Runbook Steps
+      placeholder: "1) ...\n2) ..."

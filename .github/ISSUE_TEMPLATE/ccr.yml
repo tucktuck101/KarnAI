@@ -1,0 +1,43 @@
+name: "CCR (Contract/Schema Change Request)"
+description: "Propose a change to Card IR / Event schema or other public contracts."
+title: "CCR: <schema/component> — <short desc>"
+labels: ["Type: CCR"]
+body:
+  - type: input
+    id: current_version
+    attributes:
+      label: Current Schema Version
+      placeholder: "e.g., card_ir.v1"
+    validations:
+      required: true
+  - type: input
+    id: proposed_version
+    attributes:
+      label: Proposed Schema Version
+      placeholder: "e.g., card_ir.v2"
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed Change
+      validations:
+        required: true
+  - type: checkboxes
+    id: breaking
+    attributes:
+      label: Breaking Change?
+      options:
+        - label: Yes — consumers must update
+  - type: textarea
+    id: migration
+    attributes:
+      label: Migration Plan
+      placeholder: "Coexistence strategy, adapters, timeline"
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected Modules/Services
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test Plan Updates
+      placeholder: "Golden logs, replay tests, schema validation"

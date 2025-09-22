@@ -1,0 +1,77 @@
+name: "Epic"
+description: "Portfolio-level initiative that spans multiple Features."
+title: "Epic: <short name>"
+labels: ["Type: Epic"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One-paragraph description of the outcome and business value.
+      placeholder: "What is the goal and why does it matter?"
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis / Business Outcome
+      description: What outcomes will this Epic deliver? How will we know it worked?
+      placeholder: "If we do X, we expect Y (measured by Z)."
+  - type: textarea
+    id: success_metrics
+    attributes:
+      label: Success Metrics
+      description: Quantitative measures of success (e.g., sims/min, replay determinism, latency).
+      placeholder: "List 2–5 metrics and targets."
+  - type: dropdown
+    id: component
+    attributes:
+      label: Primary Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: markdown
+    attributes:
+      value: "### WSJF (fill numbers below; calculation is manual unless automated by a Project field)"
+  - type: input
+    id: wsjf_bv
+    attributes:
+      label: WSJF — Business Value
+  - type: input
+    id: wsjf_tc
+    attributes:
+      label: WSJF — Time Criticality
+  - type: input
+    id: wsjf_rr
+    attributes:
+      label: WSJF — Risk Reduction / Opportunity Enablement
+  - type: input
+    id: wsjf_js
+    attributes:
+      label: WSJF — Job Size
+  - type: textarea
+    id: deps
+    attributes:
+      label: Dependencies
+      placeholder: "List blocking Features/ADRs/CCRs."
+  - type: textarea
+    id: dor
+    attributes:
+      label: Definition of Ready (DoR)
+      placeholder: "- Business value known\n- Success metrics drafted\n- Dependencies known"
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done (DoD)
+      options:
+        - label: All child Features complete
+        - label: Success metrics met or explained
+        - label: Docs (README/Architecture) updated
+        - label: Risks addressed or accepted

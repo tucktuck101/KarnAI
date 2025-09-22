@@ -1,0 +1,39 @@
+name: "Tech Debt / Refactor"
+description: "Behavior-neutral improvement to code structure or tooling."
+title: "Tech Debt: <area>"
+labels: ["Type: TechDebt"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why this refactor matters (risk, clarity, performance). 
+      validations:
+        required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What files/modules are in scope; what stays out.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety Checks
+      options:
+        - label: No behavior change
+        - label: Golden & replay tests still green
+        - label: Import rules respected (no domain→adapter leaks)

@@ -1,0 +1,71 @@
+name: "Story"
+description: "User Story or Enabler Story that fits in one iteration."
+title: "Story: <as a ... I want ... so that ...>"
+labels: ["Type: Story"]
+body:
+  - type: dropdown
+    id: story_kind
+    attributes:
+      label: Story Kind
+      options:
+        - User Story
+        - Enabler Story
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What problem/value this story addresses.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Use Given/When/Then.
+      placeholder: |
+        - Given ..., When ..., Then ...
+        - ...
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: dropdown
+    id: nfr_category
+    attributes:
+      label: NFR Category (select any that apply)
+      multiple: true
+      options:
+        - Latency
+        - Throughput
+        - Determinism
+        - Reliability
+        - Observability
+        - Security
+        - Portability
+  - type: textarea
+    id: cr_refs
+    attributes:
+      label: CR / Commander References (if applicable)
+      placeholder: "e.g., CR 704 (SBAs)"
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done
+      options:
+        - label: Tests pass in CI
+        - label: Docs updated (if needed)
+        - label: Observability spans present (if applicable)

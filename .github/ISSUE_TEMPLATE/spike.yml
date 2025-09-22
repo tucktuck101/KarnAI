@@ -1,0 +1,29 @@
+name: "Spike"
+description: "Time-boxed research to answer a question or evaluate an approach."
+title: "Spike: <question>"
+labels: ["Type: Spike"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research Question(s)
+      validations:
+        required: true
+  - type: input
+    id: timebox
+    attributes:
+      label: Timebox (hours)
+      placeholder: "e.g., 6"
+  - type: textarea
+    id: approach
+    attributes:
+      label: Approach / Plan
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Artifacts to Produce
+      placeholder: "e.g., prototype branch, comparison table, doc link"
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision & Next Steps

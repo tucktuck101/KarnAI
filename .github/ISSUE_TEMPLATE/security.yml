@@ -1,0 +1,42 @@
+name: "Security / Compliance Finding"
+description: "Track a security or compliance issue with severity and remediation."
+title: "Security: <finding>"
+labels: ["Type: Security"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Finding Description
+      validations:
+        required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+      validations:
+        required: true
+  - type: input
+    id: reference
+    attributes:
+      label: Reference (CWE/CVSS/Link)
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / Steps
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+  - type: textarea
+    id: remediation
+    attributes:
+      label: Remediation / Fix Plan
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation Plan

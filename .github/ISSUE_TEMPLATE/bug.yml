@@ -1,16 +1,68 @@
-name: Bug report
-description: Report a problem
+name: "Bug"
+description: "Defect report with repro steps and expected behavior."
+title: "Bug: <summary>"
 labels: ["bug"]
 body:
   - type: textarea
-    id: what
+    id: problem
     attributes:
-      label: What happened?
-      description: Steps to reproduce, expected vs. actual
+      label: Problem Statement
+      description: What is wrong and where?
     validations:
       required: true
-  - type: input
-    id: version
+  - type: textarea
+    id: expected
     attributes:
-      label: Version / commit
-      description: If known, include the commit SHA or tag
+      label: Expected Behavior
+      validations:
+        required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      validations:
+        required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: "1) ...\n2) ..."
+      validations:
+        required: true
+  - type: input
+    id: seed
+    attributes:
+      label: Seed / Repro Command
+      placeholder: "e.g., karnai run --seed 84712"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Attachments
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - P0
+        - P1
+        - P2
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: checkboxes
+    id: regression
+    attributes:
+      label: Regression?
+      options:
+        - label: This behavior worked previously

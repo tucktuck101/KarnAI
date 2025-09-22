@@ -1,10 +1,47 @@
-name: Task
-description: Small, well-scoped work item
-labels: ["task"]
+name: "Task"
+description: "Single atomic unit of work with deterministic acceptance criteria."
+title: "Task: <action>"
+labels: ["Type: Task"]
 body:
   - type: textarea
-    id: desc
+    id: description
     attributes:
-      label: What to do
+      label: Description
+      placeholder: "What exactly needs to be done?"
     validations:
       required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      placeholder: "- [ ] Criterion 1\n- [ ] Criterion 2"
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - rules
+        - simulation
+        - agents
+        - ingestion
+        - logging
+        - observability
+        - interfaces
+        - bus
+        - contracts
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk Level
+      options:
+        - Low
+        - Medium
+        - High
+  - type: checkboxes
+    id: determinism
+    attributes:
+      label: Determinism Impact
+      options:
+        - label: Affects RNG/replay and will include tests

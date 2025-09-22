@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Questions / Discussion
-    url: https://github.com/OWNER/REPO/discussions
-    about: Ask and brainstorm here instead of filing an issue.
+  - name: Documentation
+    url: https://github.com/tucktuck101/KarnAI
+    about: Read the README and docs before filing an issue.
