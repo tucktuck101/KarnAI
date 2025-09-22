@@ -7,14 +7,16 @@ body:
     id: motivation
     attributes:
       label: Motivation
-      description: Why this refactor matters (risk, clarity, performance). 
-      validations:
-        required: true
+      description: Why this refactor matters (risk, clarity, performance).
+    validations:
+      required: true
+
   - type: textarea
     id: scope
     attributes:
       label: Scope
       description: What files/modules are in scope; what stays out.
+
   - type: dropdown
     id: component
     attributes:
@@ -29,6 +31,7 @@ body:
         - interfaces
         - bus
         - contracts
+
   - type: checkboxes
     id: safety
     attributes:

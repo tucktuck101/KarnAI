@@ -21,7 +21,7 @@ body:
     id: change
     attributes:
       label: Proposed Change
-      description: Describe the exact contract/schema change being proposed.
+      description: Describe the change to the public contract or schema.
     validations:
       required: true
 
@@ -42,7 +42,7 @@ body:
     id: affected
     attributes:
       label: Affected Modules/Services
-      placeholder: "rules, simulation, agents, ingestion, logging, observability, interfaces, bus, contracts"
+      placeholder: "rules, simulation, ingestion, contracts, etc."
 
   - type: textarea
     id: tests

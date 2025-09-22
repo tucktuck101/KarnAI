@@ -12,6 +12,7 @@ body:
         - Enabler Story
     validations:
       required: true
+
   - type: textarea
     id: description
     attributes:
@@ -19,6 +20,7 @@ body:
       description: What problem/value this story addresses.
     validations:
       required: true
+
   - type: textarea
     id: acceptance
     attributes:
@@ -29,6 +31,7 @@ body:
         - ...
     validations:
       required: true
+
   - type: dropdown
     id: component
     attributes:
@@ -43,6 +46,7 @@ body:
         - interfaces
         - bus
         - contracts
+
   - type: dropdown
     id: nfr_category
     attributes:
@@ -56,11 +60,13 @@ body:
         - Observability
         - Security
         - Portability
+
   - type: textarea
     id: cr_refs
     attributes:
       label: CR / Commander References (if applicable)
       placeholder: "e.g., CR 704 (SBAs)"
+
   - type: checkboxes
     id: dod
     attributes:
