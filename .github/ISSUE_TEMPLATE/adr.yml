@@ -8,25 +8,29 @@ body:
     attributes:
       label: Context
       description: Background and forces at play.
-      validations:
-        required: true
+    validations:
+      required: true
+
   - type: textarea
     id: options
     attributes:
       label: Options Considered
       description: List the alternatives with pros/cons.
+
   - type: textarea
     id: decision
     attributes:
       label: Decision
       description: State the decision clearly.
-      validations:
-        required: true
+    validations:
+      required: true
+
   - type: textarea
     id: consequences
     attributes:
       label: Consequences
       description: Trade-offs, follow-ups, and risks.
+
   - type: dropdown
     id: status
     attributes:
@@ -36,13 +40,15 @@ body:
         - Accepted
         - Superseded
         - Rejected
-      default: 0
+      default: Proposed
+
   - type: checkboxes
     id: breaking
     attributes:
       label: Breaking Change?
       options:
         - label: This decision introduces a breaking change
+
   - type: textarea
     id: links
     attributes:

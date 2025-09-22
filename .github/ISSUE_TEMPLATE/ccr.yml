@@ -10,32 +10,40 @@ body:
       placeholder: "e.g., card_ir.v1"
     validations:
       required: true
+
   - type: input
     id: proposed_version
     attributes:
       label: Proposed Schema Version
       placeholder: "e.g., card_ir.v2"
+
   - type: textarea
     id: change
     attributes:
       label: Proposed Change
-      validations:
-        required: true
+      description: Describe the exact contract/schema change being proposed.
+    validations:
+      required: true
+
   - type: checkboxes
     id: breaking
     attributes:
       label: Breaking Change?
       options:
         - label: Yes — consumers must update
+
   - type: textarea
     id: migration
     attributes:
       label: Migration Plan
       placeholder: "Coexistence strategy, adapters, timeline"
+
   - type: textarea
     id: affected
     attributes:
       label: Affected Modules/Services
+      placeholder: "rules, simulation, agents, ingestion, logging, observability, interfaces, bus, contracts"
+
   - type: textarea
     id: tests
     attributes:
