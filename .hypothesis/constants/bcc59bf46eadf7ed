@@ -1,4 +1,0 @@
-# file: D:\devprojects\KarnAI\KarnAI\src\karnai\data\scryfall_loader.py
-# hypothesis_version: 6.140.3
-
-[0.0, '[', 'card_faces', 'cmc', 'color_identity', 'colors', 'id', 'loyalty', 'mana_cost', 'name', 'oracle_cards.parquet', 'oracle_text', 'parquet_cache', 'power', 'toughness', 'type_line', 'utf-8', '—']

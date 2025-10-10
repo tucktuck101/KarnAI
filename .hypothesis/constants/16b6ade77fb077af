@@ -1,4 +1,0 @@
-# file: D:\devprojects\KarnAI\KarnAI\src\karnai\policies\random_policy.py
-# hypothesis_version: 6.140.3
-
-[0.5, 'noop', 'pass_priority', 'stochastic', 'type']

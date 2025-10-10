@@ -1,0 +1,11 @@
+# Lists Scryfall bulk files → staging table and post-merge SQL
+bulks:
+  - name: oracle-cards
+    target: stg.stg_oracle_cards
+    post_sql: merge_oracle_cards.sql
+  - name: rulings
+    target: stg.stg_rulings
+    post_sql: merge_rulings.sql
+  - name: sets
+    target: stg.stg_sets
+    post_sql: merge_sets.sql

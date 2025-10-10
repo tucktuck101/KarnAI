@@ -1,4 +1,0 @@
-# file: D:\devprojects\KarnAI\KarnAI\src\karnai\schemas\__init__.py
-# hypothesis_version: 6.140.3
-
-['Ability', 'Action', 'Card', 'Config', 'Decklist', 'GameState', 'Observation', 'OracleFace', 'Reward', 'Zone']
