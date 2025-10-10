@@ -1,0 +1,1 @@
+-- TODO: MERGE stg.stg_oracle_cards into core.card and xref tables

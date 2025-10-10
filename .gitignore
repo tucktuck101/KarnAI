@@ -5,10 +5,20 @@ build/
 *.log
 warp_review.md
 Old files/
-
 .env
 .vscode/
 .hypothesis/
 .coverage
 *.pyc
 .pytest_cache/
+.pytest_cache/
+etl/cache/
+stg/
+# dev env
+*.pyc
+# caches
+.ruff_cache/
+.mypy_cache/
+.pre-commit-cache/
+.pre-commit/
+# app cache
