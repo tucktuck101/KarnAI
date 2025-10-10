@@ -7,3 +7,8 @@ warp_review.md
 Old files/
 
 .env
+.vscode/
+.hypothesis/
+.coverage
+*.pyc
+.pytest_cache/

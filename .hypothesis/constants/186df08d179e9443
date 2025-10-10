@@ -1,4 +1,0 @@
-# file: D:\devprojects\KarnAI\KarnAI\src\karnai\rl\__init__.py
-# hypothesis_version: 6.140.3
-
-['DQNAdapter', 'PPOAdapter', 'SelfPlayConfig', 'run_self_play']

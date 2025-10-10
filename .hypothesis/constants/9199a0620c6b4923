@@ -1,4 +1,0 @@
-# file: D:\devprojects\KarnAI\KarnAI\src\karnai\scheduler\__init__.py
-# hypothesis_version: 6.140.3
-
-['RoundRobinScheduler', 'round_robin_pods']
