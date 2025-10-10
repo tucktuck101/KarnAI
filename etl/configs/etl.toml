@@ -1,8 +1,0 @@
-[paths]
-landing_dir = "etl/storage/landing"
-staging_dir = "etl/storage/staging"
-quarantine_dir = "etl/storage/quarantine"
-logs_dir = "etl/storage/logs"
-
-[network]
-timeout_seconds = 60
