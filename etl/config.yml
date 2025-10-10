@@ -1,0 +1,363 @@
+sql:
+  server: ".\\SQLEXPRESS"
+  database: "KarnAI"
+  auth: "trusted"         # or "sql"
+  username: ""
+  password: ""
+
+catalogs:
+  - name: formats
+    target: dbo.dim_format
+    key: format_name
+    columns:
+      - {col: format_name, json: "$.data[?]"}          # each item is a string
+
+  - name: supertypes
+    target: dbo.dim_supertype
+    key: supertype
+    columns:
+      - {col: supertype, json: "$.data[?]"}
+
+  - name: card-types
+    target: dbo.dim_card_type
+    key: card_type
+    columns:
+      - {col: card_type, json: "$.data[?]"}
+
+  - name: card-subtypes
+    target: dbo.dim_subtype
+    key: subtype
+    columns:
+      - {col: subtype, json: "$.data[?]"}
+
+  - name: finishes
+    target: dbo.dim_finish
+    key: finish
+    columns:
+      - {col: finish, json: "$.data[?]"}
+
+  - name: currencies
+    target: dbo.dim_currency
+    key: currency_code
+    columns:
+      - {col: currency_code, json: "$.data[?]"}        # ISO 4217 strings
+
+  - name: keyword-abilities
+    target: dbo.dim_keyword
+    key: keyword
+    columns:
+      - {col: keyword, json: "$.data[?]"}
+
+  - name: watermarks
+    target: dbo.dim_watermark
+    key: watermark
+    columns:
+      - {col: watermark, json: "$.data[?]"}
+
+  # Note: languages catalog is names only. Populate dbo.dim_language(lang_code,name) from bulk prints later.
+  # - name: languages
+  #   ...
+
+bulks:
+  - type: default_cards
+    stage_table: stg.stg_default_cards
+
+    loads:
+      # ---------- base entities ----------
+      - name: mtgs_set
+        target: dbo.mtgs_set
+        key: set_id
+        columns:
+          - {col: set_id,    json: "$.set_id"}
+          - {col: code,      json: "$.set"}
+          - {col: name,      json: "$.set_name"}
+          - {col: set_type,  json: "$.set_type"}
+
+      - name: oracle_card
+        target: dbo.oracle_card
+        key: oracle_id
+        columns:
+          - {col: oracle_id,   json: "$.oracle_id"}
+          - {col: oracle_name, json: "$.name"}
+
+      - name: card_print
+        target: dbo.card_print
+        key: id
+        columns:
+          - {col: id,               json: "$.id"}
+          - {col: oracle_id,        json: "$.oracle_id"}
+          - {col: set_id,           json: "$.set_id"}
+          - {col: released_at,      json: "$.released_at",      cast: "date"}
+          - {col: layout,           json: "$.layout"}
+          - {col: watermark,        json: "$.watermark"}
+          - {col: collector_number, json: "$.collector_number"}
+          - {col: rarity,           json: "$.rarity"}
+          - {col: frame,            json: "$.frame"}
+          - {col: border_color,     json: "$.border_color"}
+          - {col: card_back_id,     json: "$.card_back_id"}
+          - {col: highres_image,    json: "$.highres_image",    cast: "bit"}
+          - {col: image_status,     json: "$.image_status"}
+          - {col: reserved,         json: "$.reserved",         cast: "bit"}
+          - {col: game_changer,     json: "$.game_changer",     cast: "bit"}
+          - {col: foil,             json: "$.foil",             cast: "bit"}
+          - {col: nonfoil,          json: "$.nonfoil",          cast: "bit"}
+          - {col: oversized,        json: "$.oversized",        cast: "bit"}
+          - {col: promo,            json: "$.promo",            cast: "bit"}
+          - {col: reprint,          json: "$.reprint",          cast: "bit"}
+          - {col: variation,        json: "$.variation",        cast: "bit"}
+          - {col: digital,          json: "$.digital",          cast: "bit"}
+          - {col: edhrec_rank,      json: "$.edhrec_rank",      cast: "int"}
+          - {col: penny_rank,       json: "$.penny_rank",       cast: "int"}
+
+      - name: card_face
+        array_from: "$.card_faces"
+        target: dbo.card_face
+        key: face_id                 # generate by (card_id, face_index) in your loader
+        columns:
+          - {col: card_id,    json: "$.id",           from_parent: true}
+          - {col: face_index, json: "$.__index__",    cast: "int"}
+          - {col: mana_cost,  json: "$.mana_cost"}
+          - {col: cmc,        json: "$.cmc",         cast: "float"}
+          - {col: power,      json: "$.power"}
+          - {col: toughness,  json: "$.toughness"}
+
+      # ---------- classifications ----------
+      - name: card_type
+        derive_type_line: "types"
+        target: dbo.card_type
+        key: [card_id, card_type]
+
+      - name: card_subtype
+        derive_type_line: "subtypes"
+        target: dbo.card_subtype
+        key: [card_id, subtype]
+
+      - name: card_supertype
+        derive_type_line: "supertypes"
+        target: dbo.card_supertype
+        key: [card_id, supertype]
+
+      - name: card_color
+        array_from: "$.colors"
+        target: dbo.card_color
+        key: [card_id, color]
+        columns:
+          - {col: card_id, json: "$.id", from_parent: true}
+          - {col: color,   json: "$.__value__"}
+
+      - name: card_color_identity
+        array_from: "$.color_identity"
+        target: dbo.card_color_identity
+        key: [card_id, color]
+        columns:
+          - {col: card_id, json: "$.id", from_parent: true}
+          - {col: color,   json: "$.__value__"}
+
+      - name: card_keyword
+        array_from: "$.keywords"
+        target: dbo.card_keyword
+        key: [card_id, keyword]
+        columns:
+          - {col: card_id, json: "$.id", from_parent: true}
+          - {col: keyword, json: "$.__value__"}
+
+      - name: card_finish
+        array_from: "$.finishes"
+        target: dbo.card_finish
+        key: [card_id, finish]
+        columns:
+          - {col: card_id, json: "$.id", from_parent: true}
+          - {col: finish,  json: "$.__value__"}
+
+      - name: card_game
+        array_from: "$.games"
+        target: dbo.card_game
+        key: [card_id, game]
+        columns:
+          - {col: card_id, json: "$.id", from_parent: true}
+          - {col: game,    json: "$.__value__"}
+
+      - name: card_legality
+        object_from: "$.legalities"
+        target: dbo.card_legality
+        key: [card_id, format_name]
+        columns:
+          - {col: card_id,     json: "$.id", from_parent: true}
+          - {col: format_name, json: "$.__key__"}
+          - {col: status,      json: "$.__value__"}
+
+      # ---------- images and URIs ----------
+      - name: card_image_uri
+        object_from: "$.image_uris"
+        target: dbo.card_image_uri
+        key: [card_id, uri_kind]
+        columns:
+          - {col: card_id,  json: "$.id", from_parent: true}
+          - {col: uri_kind, json: "$.__key__"}
+          - {col: uri,      json: "$.__value__"}
+
+      - name: face_image_uri
+        special: "face_image_uris"    # handled in loader: OPENJSON over card_faces then image_uris
+        target: dbo.face_image_uri
+        key: [face_id, uri_kind]
+
+      - name: card_related_uri
+        object_from: "$.related_uris"
+        target: dbo.card_related_uri
+        key: [card_id, uri_kind]
+        columns:
+          - {col: card_id,  json: "$.id", from_parent: true}
+          - {col: uri_kind, json: "$.__key__"}
+          - {col: uri,      json: "$.__value__"}
+
+      - name: card_purchase_uri
+        object_from: "$.purchase_uris"
+        target: dbo.card_related_uri
+        key: [card_id, uri_kind]
+        columns:
+          - {col: card_id,  json: "$.id", from_parent: true}
+          - {col: uri_kind, json: "$.__key__"}
+          - {col: uri,      json: "$.__value__"}
+
+      # ---------- relations ----------
+      - name: card_relation
+        array_from: "$.all_parts"
+        target: dbo.card_relation
+        key: [card_id, related_id]
+        columns:
+          - {col: card_id,   json: "$.id",            from_parent: true}
+          - {col: related_id,json: "$.__value__.id"}
+          - {col: component, json: "$.__value__.component"}
+
+      # ---------- localization ----------
+      - name: print_localized
+        target: dbo.print_localized
+        key: [card_id, lang_code]
+        columns:
+          - {col: card_id,      json: "$.id"}
+          - {col: lang_code,    json: "$.lang"}
+          - {col: printed_name, json: "$.printed_name"}
+
+      - name: card_text_localized
+        array_from: "$.card_faces"
+        target: dbo.card_text_localized
+        key: [face_id, lang_code]
+        columns:
+          - {col: face_id,     json: "$.__index__",  cast: "int"}   # join to dbo.card_face in SQL to get real face_id
+          - {col: lang_code,   json: "$.lang"}                       # same language as print
+          - {col: name,        json: "$.name"}
+          - {col: type_line,   json: "$.type_line"}
+          - {col: oracle_text, json: "$.oracle_text"}
+
+      # ---------- artists ----------
+      - name: artist
+        target: dbo.artist
+        key: artist_id
+        columns:
+          - {col: artist_id, json: "$.artist_ids[0]"}   # when missing, populate via name downstream
+          - {col: name,      json: "$.artist"}
+
+      - name: card_artist
+        target: dbo.card_artist
+        key: [card_id, artist_id]
+        columns:
+          - {col: card_id,   json: "$.id"}
+          - {col: artist_id, json: "$.artist_ids[0]"}
+
+  - type: rulings
+    stage_table: stg.stg_rulings
+    loads:
+      - name: card_ruling
+        target: dbo.card_ruling
+        key: ruling_id
+        columns:
+          - {col: ruling_id,    json: "$.id"}
+          - {col: oracle_id,    json: "$.oracle_id"}
+          - {col: source,       json: "$.source"}
+          - {col: published_at, json: "$.published_at", cast: "date"}
+          - {col: comment,      json: "$.comment"}
+
+# === seeds and enrich steps driven from staged/default_cards ===
+seeds:
+  # distinct language codes seen in prints
+  - name: dim_language_from_prints
+    target: dbo.dim_language
+    key: lang_code
+    select: |
+      SELECT DISTINCT JSON_VALUE(raw,'$.lang') AS lang_code, NULL AS name
+      FROM stg.stg_default_cards
+      WHERE JSON_VALUE(raw,'$.lang') IS NOT NULL
+
+  # optional enrich names using Scryfall /catalog/languages (names only)
+  - name: dim_language_enrich_names
+    target: dbo.dim_language
+    mode: update
+    select: |
+      WITH cat AS (
+        SELECT j.value AS name
+        FROM OPENJSON( (SELECT CAST(bulk.payload AS nvarchar(max)) FROM (VALUES(0)) AS bulk(payload)) )
+      )
+      SELECT l.lang_code, c.name
+      FROM dbo.dim_language l
+      JOIN cat c ON 1=0  -- placeholder: provide your own mapping table from code->name if desired
+
+  # collect uri kinds found at print and face level
+  - name: dim_uri_kind_from_prints
+    target: dbo.dim_uri_kind
+    key: uri_kind
+    select: |
+      WITH K AS (
+        SELECT k AS uri_kind
+        FROM stg.stg_default_cards
+        CROSS APPLY OPENJSON(JSON_QUERY(raw,'$.image_uris')) WITH ([k] nvarchar(128) '$.key') j
+        UNION ALL
+        SELECT k
+        FROM stg.stg_default_cards
+        CROSS APPLY OPENJSON(JSON_QUERY(raw,'$.related_uris')) WITH ([k] nvarchar(128) '$.key') j
+        UNION ALL
+        SELECT k
+        FROM stg.stg_default_cards
+        CROSS APPLY OPENJSON(JSON_QUERY(raw,'$.purchase_uris')) WITH ([k] nvarchar(128) '$.key') j
+      )
+      SELECT DISTINCT uri_kind FROM K WHERE uri_kind IS NOT NULL
+
+  - name: dim_uri_kind_from_faces
+    target: dbo.dim_uri_kind
+    key: uri_kind
+    select: |
+      WITH F AS (
+        SELECT k AS uri_kind
+        FROM stg.stg_default_cards
+        CROSS APPLY OPENJSON(JSON_QUERY(raw,'$.card_faces')) AS faces
+        CROSS APPLY OPENJSON(faces.value, '$.image_uris') WITH ([k] nvarchar(128) '$.key') j
+      )
+      SELECT DISTINCT uri_kind FROM F WHERE uri_kind IS NOT NULL
+fetch:
+  outdir: "etl/cache"                 # root cache directory
+  use_sidecar_meta: true              # store JSON sidecars with etag, size, sha256
+  catalogs:
+    from_catalog_mappings: true       # derive list from top-level `catalogs[*].name`
+    override: []                      # optional explicit list; if non-empty, use this instead
+  bulks:
+    types: ["default_cards","oracle_cards","rulings"]   # which bulk datasets to download
+  http:
+    user_agent: "KarnAI/1.0 (+github.com/tucktuck101/karnai)"
+    timeout_connect_sec: 10
+    timeout_read_sec: 600
+    retries: 3
+    backoff_factor: 0.5               # seconds; exponential backoff between retries
+    proxies: {}                        # e.g. {"http": "http://proxy:8080", "https": "http://proxy:8080"}
+  download:
+    chunk_bytes: 1048576              # 1 MiB streaming chunk
+    detect_gzip: true                 # auto-rename .jsonl vs .jsonl.gz
+    preview_first_line: true          # read one line to validate file
+    compute_sha256: true              # write digest into sidecar meta
+    filename_template: "{type}_{id}.jsonl.gz"  # used before gzip detection/rename
+  clean:
+    patterns:
+      - "catalog_*.meta.json"
+      - "catalogs/*.json"
+      - "bulk/*.jsonl"
+      - "bulk/*.jsonl.gz"
+      - "bulk/*.meta.json"
+    remove_empty_dirs: ["catalogs","bulk"]
