@@ -1,0 +1,17 @@
+version: 1
+formatters:
+  default:
+    format: "%(asctime)s %(levelname)s %(name)s %(message)s"
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+    level: INFO
+loggers:
+  etl:
+    handlers: [console]
+    level: INFO
+    propagate: false
+root:
+  handlers: [console]
+  level: INFO

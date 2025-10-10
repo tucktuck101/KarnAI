@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scryfall All Cards",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "oracle_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "set_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "released_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "layout": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "watermark": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "collector_number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rarity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "frame": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "border_color": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "image_status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "highres_image": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "foil": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "nonfoil": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "promo": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "reprint": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "variation": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "digital": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "edhrec_rank": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "penny_rank": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "additionalProperties": true
+}

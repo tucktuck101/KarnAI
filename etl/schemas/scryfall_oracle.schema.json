@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scryfall Oracle Cards",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "oracle_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type_line": {
+      "type": "string"
+    },
+    "oracle_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "oracle_id",
+    "name"
+  ],
+  "additionalProperties": true
+}
