@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\model\turn.py
+# hypothesis_version: 6.140.3
+
+['begin_combat', 'beginning', 'cleanup', 'combat', 'combat_damage', 'declare_attackers', 'declare_blockers', 'draw', 'end', 'end_combat', 'ending', 'main', 'postcombat_main', 'precombat_main', 'untap', 'upkeep']

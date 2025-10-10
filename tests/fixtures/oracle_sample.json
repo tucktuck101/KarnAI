@@ -1,0 +1,30 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "name": "Llanowar Elves",
+    "cmc": 1,
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Elf Druid",
+    "oracle_text": "{T}: Add {G}.",
+    "mana_cost": "G"
+  },
+  {
+    "id": "00000000-0000-0000-0000-000000000002",
+    "name": "Counterspell",
+    "cmc": 2,
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "type_line": "Instant",
+    "oracle_text": "Counter target spell.",
+    "mana_cost": "UU"
+  }
+]

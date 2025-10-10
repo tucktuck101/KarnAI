@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\rl\adapters.py
+# hypothesis_version: 6.140.3
+
+[0.0, 0.05, 1.0, 'active_player', 'noop', 'pass_priority', 'priority_player', 'stochastic', 'turn', 'type']

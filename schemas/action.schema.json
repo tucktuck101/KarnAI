@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/action.schema.json",
+  "title": "Action",
+  "type": "object",
+  "required": [
+    "actor",
+    "type"
+  ],
+  "properties": {
+    "actor": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/observation.schema.json",
+  "title": "Observation",
+  "type": "object",
+  "required": [
+    "visible_state",
+    "legal_actions"
+  ],
+  "properties": {
+    "visible_state": {
+      "type": "object"
+    },
+    "legal_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "action.schema.json"
+      }
+    },
+    "mask": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "additionalProperties": false
+}

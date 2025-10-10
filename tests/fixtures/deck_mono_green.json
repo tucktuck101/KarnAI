@@ -1,0 +1,13 @@
+{
+  "name": "Mono-Green Elves",
+  "commander": "Ezuri, Renegade Leader",
+  "partner": null,
+  "cards": [
+    "Llanowar Elves",
+    "Elvish Mystic",
+    "Forest"
+  ],
+  "color_identity": [
+    "G"
+  ]
+}

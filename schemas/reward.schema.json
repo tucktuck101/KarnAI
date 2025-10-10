@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/reward.schema.json",
+  "title": "Reward",
+  "type": "object",
+  "required": [
+    "player",
+    "value",
+    "done"
+  ],
+  "properties": {
+    "player": {
+      "type": "integer"
+    },
+    "value": {
+      "type": "number"
+    },
+    "done": {
+      "type": "boolean"
+    },
+    "info": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

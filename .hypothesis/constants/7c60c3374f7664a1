@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\dsl\parser.py
+# hypothesis_version: 6.140.3
+
+['add_mana', 'amount', 'color', 'counter_target', 'spell', 'tap_self', 'target']

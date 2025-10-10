@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/oracle_face.schema.json",
+  "title": "OracleFace",
+  "type": "object",
+  "required": [
+    "name",
+    "oracle_text"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "mana_cost": {
+      "type": "string"
+    },
+    "oracle_text": {
+      "type": "string"
+    },
+    "power": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "toughness": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "loyalty": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subtypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

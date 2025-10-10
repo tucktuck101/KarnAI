@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/gamestate.schema.json",
+  "title": "GameState",
+  "type": "object",
+  "required": [
+    "players",
+    "active_player",
+    "turn",
+    "phase",
+    "stack",
+    "zones",
+    "rng_seed"
+  ],
+  "properties": {
+    "players": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "active_player": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "phase": {
+      "type": "string"
+    },
+    "priority_player": {
+      "type": "integer"
+    },
+    "stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "zones": {
+      "type": "object"
+    },
+    "continuous_effects": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "rng_seed": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false
+}

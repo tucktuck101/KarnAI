@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/card.schema.json",
+  "title": "Card",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "mana_value",
+    "colors",
+    "types",
+    "oracle_text"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Scryfall UUID"
+    },
+    "name": {
+      "type": "string"
+    },
+    "mana_cost": {
+      "type": "string"
+    },
+    "mana_value": {
+      "type": "number"
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "color_identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subtypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supertypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oracle_text": {
+      "type": "string"
+    },
+    "faces": {
+      "type": "array",
+      "items": {
+        "$ref": "oracle_face.schema.json"
+      }
+    }
+  },
+  "additionalProperties": false
+}

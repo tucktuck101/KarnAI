@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\scheduler\roundrobin.py
+# hypothesis_version: 6.140.3
+
+['deterministic', 'distributed', 'match_id', 'players', 'pod', 'pod_size', 'round', 'rounds', 'seed']

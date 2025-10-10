@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/ability.schema.json",
+  "title": "Ability",
+  "type": "object",
+  "required": [
+    "id",
+    "kind",
+    "text"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "activated",
+        "triggered",
+        "static",
+        "keyword"
+      ]
+    },
+    "cost": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effect_ir": {
+      "type": "object",
+      "description": "CardIR snippet for effect"
+    },
+    "text": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

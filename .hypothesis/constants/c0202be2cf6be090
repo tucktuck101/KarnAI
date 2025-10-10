@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\eval\harness.py
+# hypothesis_version: 6.140.3
+
+[0.0, 0.48, 0.5, 0.96, 1.0, 1000.0, 'A', 'B', 'pass_priority', 'type']

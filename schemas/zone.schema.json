@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/zone.schema.json",
+  "title": "Zone",
+  "type": "object",
+  "required": [
+    "name",
+    "cards"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "library",
+        "hand",
+        "battlefield",
+        "graveyard",
+        "exile",
+        "stack",
+        "command",
+        "ante"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "CardInstance id"
+      }
+    }
+  },
+  "additionalProperties": false
+}

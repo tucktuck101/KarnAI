@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\metrics\aggregate.py
+# hypothesis_version: 6.140.3
+
+[0.0, 1.0, '_file', 'avg_steps_per_replay', 'config', 'determinism_rate', 'footer', 'header', 'replays', 'seed', 'sha256', 'step', 'total_steps', 'type', 'unique_sha', '{}']

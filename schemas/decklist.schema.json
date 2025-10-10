@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/decklist.schema.json",
+  "title": "Decklist",
+  "type": "object",
+  "required": [
+    "commander",
+    "cards",
+    "color_identity",
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "commander": {
+      "type": "string",
+      "description": "Primary commander card name or id"
+    },
+    "partner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "color_identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\rl\selfplay.py
+# hypothesis_version: 6.140.3
+
+[0.0, 0.1, 'episodes', 'pass_priority', 'reward', 'steps', 'train_batch', 'turn', 'type']

@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\model\__init__.py
+# hypothesis_version: 6.140.3
+
+['CardInstance', 'ContinuousEffect', 'Phase', 'Player', 'Stack', 'StackItem', 'Step', 'Target', 'Turn', 'Zones']

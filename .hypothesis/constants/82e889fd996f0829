@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\env\gym_env.py
+# hypothesis_version: 6.140.3
+
+[0.0, 1000, 'active_player', 'ansi', 'noop', 'pass_priority', 'priority_player', 'render_modes', 'turn', 'type']

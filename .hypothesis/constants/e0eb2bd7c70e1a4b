@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\replay\logger.py
+# hypothesis_version: 6.140.3
+
+[',', ':', 'ReplayLogger', 'a', 'action', 'config', 'created_at', 'footer', 'header', 'idx', 'obs', 'r', 'seed', 'sha256', 'step', 'type', 'utf-8', 'w']

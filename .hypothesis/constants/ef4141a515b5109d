@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\engine\kernel.py
+# hypothesis_version: 6.140.3
+
+[',', ':', 'Engine not reset', 'action', 'active', 'active_player', 'advance_turn', 'data', 'detail', 'deterministic_step', 'event', 'events', 'log', 'noop', 'pass_priority', 'player', 'priority_player', 'replay_bytes', 'reset', 'seed', 'sha256', 'step', 'turn', 'type', 'utf-8']

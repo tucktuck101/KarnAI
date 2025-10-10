@@ -1,0 +1,4 @@
+# file: D:\devprojects\KarnAI\KarnAI\src\karnai\cli\karnai.py
+# hypothesis_version: 6.140.3
+
+['(noop|pass|quit)> ', '--episodes', '--seed', 'Draws', 'Evaluation Results', 'Metric', 'Number of episodes.', 'RNG seed.', 'Rating A', 'Rating B', 'Value', 'Wins A', 'Wins B', '__main__', 'exit', 'p', 'pass_priority', 'quit', 'stochastic', 'type']

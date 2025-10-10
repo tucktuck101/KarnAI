@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karn.ai/schemas/config.schema.json",
+  "title": "Config",
+  "type": "object",
+  "required": [
+    "rng_seed",
+    "max_turns"
+  ],
+  "properties": {
+    "rng_seed": {
+      "type": "integer"
+    },
+    "max_turns": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string"
+        }
+      }
+    },
+    "env": {
+      "type": "object",
+      "properties": {
+        "reward": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}
