@@ -1,129 +1,134 @@
-# Karn.ai: Commander AI Simulation & Ranking Platform
+# Karn.AI
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Status: Proof-of-Concept](https://img.shields.io/badge/status-active-lightgrey)
-![CI/CD](https://img.shields.io/github/actions/workflow/status/your-repo/karnai-ci.yml)
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
+**Open-source Gym-style environment for training AI to play Magic: The Gathering – Commander (EDH).**
 
-## Overview
+Karn.AI provides a reproducible simulation platform for researchers, hobbyists, and developers who want to explore reinforcement learning, decision theory, and AI gameplay in a complex, rules-rich card game.
 
-**Karn.ai** is a modular, microservice-based AI simulation system designed for _Magic: The Gathering's_ Commander (EDH) format. It simulates 4-player pods, trains reinforcement learning agents, and evaluates decks based on strategic tag impact and win condition alignment.
-
-The platform supports:
-- Distributed simulation across internal and community-hosted clients
-- Advanced AI training using RLlib (PPO, A2C) with reward shaping and Bayesian convergence
-- Archetype-aware decision making and deck performance ranking
-- Fully indexed, replayable game logs for education and transparency
-
-> _Train Commander agents. Rank decks. Understand strategy._
+📄 [Vision](./KarnAI_Vision.md) | 📄 [POC Scope](./KarnAI_POC_Scope.md)
 
 ---
 
-## Key Features
+## Status: Proof of Concept (POC)
 
-- 🧠 **Reinforcement Learning Agents**: Tag-aware, archetype-biased decision models using PPO/A2C
-- 📊 **Bayesian Convergence Tracking**: Confidently halt training when results stabilize (99.999%)
-- 🧩 **Modular Microservice Architecture**: Built for Kubernetes with Redis, Kafka, PostgreSQL, MongoDB, Neo4j
-- 🧾 **Card IR System**: Parses card JSON into a game-agnostic intermediate representation
-- 🔁 **Replay & Annotation System**: Logs every game action for training, transparency, and review
-- 🔄 **Distributed Simulation Support**: Volunteer compute clients run pods at scale
-- 💰 **Value Indexing**: Evaluate card efficiency relative to its market price
+This repository currently delivers the **Milestone 0 POC**, designed to:
 
----
+- Run locally on limited hardware (no paid cloud infra required).
+- Provide a Gym-compatible API (`reset()`, `step()`, `seed()`, `render()`).
+- Simulate deterministic test games with seeded randomness.
+- Track in/out of scope features explicitly.
 
-## Tech Stack
-
-| Layer            | Technology                                      |
-|------------------|-------------------------------------------------|
-| **Languages**    | Python(prototyping), Rust (planned rules engine), TypeScript |
-| **Data**         | PosMSSQL, Redis, MongoDB, Neo4j               |
-| **Infrastructure** | Docker, Kubernetes (AKS), GitHub Actions       |
-| **Observability** | Prometheus, Grafana, Loki, OpenTelemetry        |
-| **AI Framework** | RLlib (Ray), NumPy, Pandas                      |
-| **Web**          | HTML/CSS/JS (UI Client), Replay Viewer          |
-| **APIs**         | RESTful JSON APIs, OpenAPI spec                 |
+Future goals (e.g., distributed simulations, dashboards, cloud scale-out) are deferred to the roadmap.
 
 ---
 
-## Architecture
+## Why Karn.AI?
 
-Karn.ai consists of over 20 independently deployable services:
-
-- `simulation-engine`: Core rule-aware game engine
-- `agent-service`: RLlib agent training and serving
-- `reward-shaping-agent`: Strategic utility & tag-aware feedback
-- `matchmaker`: Builds pods, dispatches simulations
-- `card-ir-generator` / `registry`: Converts and stores Intermediate Representations
-- `deck-service`: Validates and manages decklists
-- `replay-logger`, `replay-viewer`: Game log management and visualization
-- `value-index-service`: Evaluates gameplay efficiency vs. market value
-- `bayesian-evaluator`: Detects convergence, halts redundant training
-- `volunteer-coordinator`: Distributes jobs to external simulation clients
-
-See [`/docs`](./docs) for full service descriptions and system diagrams.
+- **Reproducibility:** Deterministic simulations with seeded randomness.
+- **Research Utility:** Gym API integration for RL agents.
+- **MTG Accuracy:** Compliance with the Magic: The Gathering Comprehensive Rules.
+- **Community:** Open-source, modular, and contributor-friendly.
 
 ---
 
-## Getting Started
+## Quickstart
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-org/karn.ai.git
-   cd karn.ai
-   ```
+### Prerequisites
+- Python 3.10+
+- pip, uv, or poetry for dependency management
+- Works on Linux, macOS, and Windows
 
-2. **Run Setup Script**
-   ```bash
-   bash setup.sh
-   ```
-   This will:
-   - Prompt for environment config (e.g., DB URIs)
-   - Download simulation resources (excluding large assets like NLTK/Scryfall bulk)
-   - Save secrets to `.env` and auto-generate commit (excluding large/sensitive files)
+### Installation
+```bash
+git clone https://github.com/YOUR_ORG/karn.ai.git
+cd karn.ai
+pip install -e .
+```
 
+### Run a Smoke Test
+```python
+from karnai.env import KarnAIEnv
 
----
+# Create environment
+env = KarnAIEnv()
 
-## Project Goals
+# Reset with seed for determinism
+obs = env.reset(seed=42)
 
-- 🧪 _Simulate 5-Deck Proof of Concept_ for foundational training
-- 📈 _Achieve accurate performance rankings_ per Commander archetype
-- 🌐 _Launch a public-facing dashboard_ similar to EDHREC with replays and metrics
-- ♻️ _Comply with WOTC Fan Content Policy_ and support ethical, community-based monetization
+# Take a dummy action (replace with legal one from env.action_space)
+obs, reward, done, info = env.step(env.action_space.sample())
 
----
+print("Observation:", obs)
+print("Reward:", reward)
+print("Done:", done)
+```
 
-## Roadmap
-
-- [x] Card IR Parsing & Registry
-- [x] Simulation Engine MVP
-- [x] RL Agent Training Loop (PPO/A2C)
-- [ ] Deck Archetype Classifier
-- [ ] Replay Indexer + Viewer
-- [ ] Value Index Score Integration
-- [ ] Distributed Volunteer Support
-- [ ] Web Dashboard.
-
-For full development milestones, see [`docs/roadmap.txt`](./docs/roadmap.txt)
+Run tests:
+```bash
+pytest
+```
 
 ---
 
-## License
+## Scope: What’s In / Out
 
-This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for details.
+### In Scope (POC)
+- Gym API (reset/step/seed/render).
+- Action & observation spaces for MTG zones, stack, life, commanders, mana, priority, damage tracking.
+- Legal-action masking.
+- Deterministic bots for reproducible smoke tests.
+- Replay logging.
+
+### Out of Scope (POC)
+- Paid cloud infrastructure.
+- Advanced RL pipelines.
+- Multi-node distributed simulation.
+- Full card database & keyword abilities (beyond test subset).
+- Production dashboards.
+
+(See [POC Scope](./KarnAI_POC_Scope.md) for full details.)
+
+---
+
+## Success Criteria
+
+The POC is successful if it:
+- Implements all rules required for test games to complete without illegal states.
+- Provides working Gym API integration.
+- Passes automated test scripts in CI.
+- Allows seeded reproducible runs.
+
+---
+
+## Roadmap (Future)
+
+- Distributed simulation (multi-node, volunteer clients).
+- Integration with cloud data pipelines and dashboards.
+- Expanded card/keyword coverage.
+- Advanced RL benchmarks.
+
+---
+
+## Contributing
+
+We use **GitHub issue templates** to structure work into:
+- **Epics** (CR top-level sections or core components).
+- **Features** (subsections of rules / functional modules).
+- **Tasks** (implementation, docs, tests, observability).
+
+👉 Start small: pick a Task, run tests, and open a PR.
+
+---
+
+## Data & Compliance
+
+- Uses **Scryfall bulk data** (permitted under their API license).
+- Complies with **Wizards of the Coast Fan Content Policy**.
+- Licensed under **MIT** (see LICENSE).
 
 ---
 
 ## Acknowledgements
 
-- Based on Magic: The Gathering by Wizards of the Coast
-- DISCLAIMER:
-
-This project is not affiliated with, endorsed, sponsored, or specifically approved by Wizards of the Coast LLC.
-This project may use the trademarks and other intellectual property of Wizards of the Coast LLC, which is permitted under Wizards’ Fan Content Policy.
-For more information about Wizards of the Coast or any of Wizards' trademarks or other intellectual property, please visit https://company.wizards.com.
-- Inspired by EDHREC, Moxfield, and the MTG community
-
----
-
-> _“104.3a A player can concede the game at any time. A player who concedes leaves the game immediately. That player loses the game.”_
+- [OpenAI Gym](https://www.gymlibrary.dev/) for the environment spec.
+- [Scryfall](https://scryfall.com) for card data.
+- Magic: The Gathering Comprehensive Rules as the rules source.

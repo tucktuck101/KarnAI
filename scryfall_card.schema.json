@@ -1,0 +1,584 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/scryfall/card.schema.json",
+  "title": "Scryfall Card",
+  "description": "JSON Schema for Scryfall Card objects as returned in the bulk 'default_cards' file. Based on Scryfall API docs.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "object",
+    "id",
+    "oracle_id",
+    "name",
+    "lang",
+    "set",
+    "set_name",
+    "layout"
+  ],
+  "properties": {
+    "object": {
+      "const": "card"
+    },
+    "id": {
+      "type": "string",
+      "description": "UUID for this card printing"
+    },
+    "oracle_id": {
+      "type": "string",
+      "description": "UUID for oracle identity"
+    },
+    "multiverse_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "mtgo_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "mtgo_foil_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tcgplayer_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tcgplayer_etched_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cardmarket_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "released_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "scryfall_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "layout": {
+      "type": "string"
+    },
+    "highres_image": {
+      "type": "boolean"
+    },
+    "image_status": {
+      "type": "string"
+    },
+    "image_uris": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "small": {
+          "type": "string",
+          "format": "uri"
+        },
+        "normal": {
+          "type": "string",
+          "format": "uri"
+        },
+        "large": {
+          "type": "string",
+          "format": "uri"
+        },
+        "png": {
+          "type": "string",
+          "format": "uri"
+        },
+        "art_crop": {
+          "type": "string",
+          "format": "uri"
+        },
+        "border_crop": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "mana_cost": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cmc": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "type_line": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oracle_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "power": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "toughness": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "loyalty": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "defense": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "color_identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "produced_mana": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "all_parts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object"
+      }
+    },
+    "card_faces": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "object": {
+            "const": "card_face"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mana_cost": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "type_line": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "oracle_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "power": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "toughness": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "loyalty": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "defense": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "image_uris": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "legalities": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "standard": {
+          "type": "string"
+        },
+        "pioneer": {
+          "type": "string"
+        },
+        "modern": {
+          "type": "string"
+        },
+        "legacy": {
+          "type": "string"
+        },
+        "vintage": {
+          "type": "string"
+        },
+        "pauper": {
+          "type": "string"
+        },
+        "penny": {
+          "type": "string"
+        },
+        "commander": {
+          "type": "string"
+        },
+        "oathbreaker": {
+          "type": "string"
+        },
+        "paupercommander": {
+          "type": "string"
+        },
+        "brawl": {
+          "type": "string"
+        },
+        "historic": {
+          "type": "string"
+        },
+        "explorer": {
+          "type": "string"
+        },
+        "alchemy": {
+          "type": "string"
+        },
+        "gladiator": {
+          "type": "string"
+        },
+        "oldschool": {
+          "type": "string"
+        },
+        "premodern": {
+          "type": "string"
+        },
+        "predh": {
+          "type": "string"
+        },
+        "duel": {
+          "type": "string"
+        },
+        "future": {
+          "type": "string"
+        }
+      }
+    },
+    "games": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reserved": {
+      "type": "boolean"
+    },
+    "foil": {
+      "type": "boolean"
+    },
+    "nonfoil": {
+      "type": "boolean"
+    },
+    "finishes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oversized": {
+      "type": "boolean"
+    },
+    "promo": {
+      "type": "boolean"
+    },
+    "reprint": {
+      "type": "boolean"
+    },
+    "variation": {
+      "type": "boolean"
+    },
+    "set_id": {
+      "type": "string"
+    },
+    "set": {
+      "type": "string"
+    },
+    "set_name": {
+      "type": "string"
+    },
+    "set_type": {
+      "type": "string"
+    },
+    "set_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "set_search_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "scryfall_set_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "rulings_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "prints_search_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "collector_number": {
+      "type": "string"
+    },
+    "digital": {
+      "type": "boolean"
+    },
+    "rarity": {
+      "type": "string"
+    },
+    "card_back_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "artist": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "artist_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "illustration_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "frame": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "frame_effects": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "security_stamp": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "watermark": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "full_art": {
+      "type": "boolean"
+    },
+    "textless": {
+      "type": "boolean"
+    },
+    "booster": {
+      "type": "boolean"
+    },
+    "story_spotlight": {
+      "type": "boolean"
+    },
+    "edhrec_rank": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "penny_rank": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "prices": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "usd": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usd_foil": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usd_etched": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eur": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tix": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "related_uris": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
+    },
+    "purchase_uris": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
+    },
+    "preview": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_uri": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "previewed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      }
+    }
+  }
+}

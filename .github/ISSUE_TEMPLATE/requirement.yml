@@ -1,0 +1,45 @@
+name: Requirement
+description: Template for creating new Functional or Non-Functional Requirements
+title: "[REQ] "
+labels: ["requirement"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Requirement Type
+      options:
+        - FR
+        - NFR
+    validations:
+      required: true
+  - type: input
+    id: id
+    attributes:
+      label: Requirement ID
+      description: e.g., FR-ENV-001 or NFR-PERF-001
+    validations:
+      required: true
+  - type: textarea
+    id: spec
+    attributes:
+      label: Specification / Measure
+      description: Functional spec (FR) or quality measure (NFR)
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this requirement needed?
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria / Test Plan
+      description: How will this requirement be verified?
+    validations:
+      required: true
+  - type: textarea
+    id: links
+    attributes:
+      label: Links
+      description: Related goals, epics, tests, or CI jobs
